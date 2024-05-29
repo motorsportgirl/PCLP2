@@ -1,0 +1,158 @@
+Scrieți o aplicație care are rolul de a gestiona disponibilitatea camerelor unui hotel cu maxim 30 de camere. Fiecare
+cameră este caracterizată de un număr, tipul său, care reprezintă numărul maxim de persoane care pot fi cazate
+(single - 1, twin - 2, double - 2, triple - 3), numărul efectiv de persoane cazate în cameră, și prețul camerei pe noapte.
+Se citesc de la tastatură, în buclă, până la apariția comenzii de valoare -1, valori întregi reprezentând una dintre
+valorile de mai jos. În funcție de valoarea acestora, se execută una dintre următoarele funcționalități:
+
+1. Introducere cameră. Se citesc de la tastatură de pe aceeași linie, separate de un spațiu, următoarele informații
+care caracterizează o cameră de hotel:
+● un întreg, reprezentând numărul camerei;
+● un std::string, reprezentând tipul camerei. Acesta poate fi unul dintre “single”, “twin”, “double” și “triple”;
+● un întreg, reprezentând numărul de persoane cazate în cameră;
+● un float, reprezentând prețul camerei pe noapte.
+
+2. Afișare camere. Se vor afișa pe ecran toate camerele introduse, câte una pe rând, cu caracteristicile separate
+de un singur spațiu liber, astfel:
+<numar> <tip> <nr_persoane_cazate> <pret>
+
+3. Afișare grad ocupare hotel. Se va afișa pe ecran un număr real, cu două zecimale exacte, reprezentând
+procentul de ocupare al hotelului. Acesta se calculează ca fiind
+(nr_total_camere_ocupate/nr_total_camere)*100. O cameră este considerată ocupată dacă în ea este cazată
+cel puțin o persoană.
+
+4. Afișare capacitate rămasă. Se va afișa pe ecran un număr întreg, reprezentând numărul total de persoane ce
+mai pot fi cazate în camerele rămase disponibile.
+
+5. Sortare după număr maxim de persoane și apoi după preț. Se vor afișa pe ecran toate camerele, în modul
+precizat la punctul 2, sortate în ordine crescătoare, mai întâi după numărul maxim de persoane ce pot fi cazate
+în cameră și apoi după preț. Logica de comparație este următoarea: dacă două camere au același număr
+maxim de persoane, atunci prima dintre ele este cea cu prețul mai mic. Altfel, prima dintre ele este cea cu
+numărul maxim de persoane mai mic. Se garantează că nu există camere cu același număr maxim de
+persoane și același preț.
+
+Test 1: 
+1
+1 single 0 150
+1
+3 twin 2 240
+1
+12 double 2 220
+1
+2 triple 0 300
+1
+20 double 1 240
+1
+21 twin 1 250
+1
+7 single 1 150
+2
+-1
+
+ce afiseaza: 
+
+1 single 0 150
+3 twin 2 240
+12 double 2 220
+2 triple 0 300
+20 double 1 240
+21 twin 1 250
+7 single 1 150
+
+Explicație: comanda 1 corespunde adăugării unei camere. Comanda 2 corespunde afișării tuturor camerelor
+introduse. Comanda -1 corespunde opririi programului.
+
+test 2:
+1
+1 single 0 150
+1
+3 twin 2 240
+1
+12 double 2 220
+1
+2 triple 0 300
+1
+20 double 1 240
+1
+21 twin 1 250
+1
+7 single 1 150
+3
+-1
+afisare:
+
+71.43
+
+
+Explicație: comanda 1 corespunde adăugării unei camere. Comanda 3 corespunde afișării gradului de ocupare
+al hotelului. Comanda -1 corespunde opririi programului.
+Dintre camerele citite, doar camerele cu numerele 1 și 2 sunt disponibile, restul fiind ocupate. În total s-au citit
+7 camere. Prin urmare, procentul de ocupare, cu 2 zecimale exacte, este 5/7*100 = 71.43%.
+
+test 3:
+
+1
+1 single 0 50
+1
+3 twin 2 240
+1
+12 double 2 220
+1
+2 triple 0 300
+1
+20 double 1 240
+1
+21 twin 1 250
+1
+7 single 1 150
+4
+-1
+
+afiseaza: 
+
+4
+
+Explicație: comanda 1 corespunde adăugării unei camere. Comanda 4 corespunde afișării capacității rămase.
+Comanda -1 corespunde opririi programului.
+Dintre camerele citite, doar camerele cu numerele 1 și 2 sunt disponibile. Acestea au disponibile, în total, 1
+(single) + 3 (triple) = 4 locuri.
+
+
+test 4:
+
+1
+1 single 0 150
+1
+3 twin 2 230
+1
+12 double 2 130
+1
+15 triple 2 320
+1
+2 triple 0 280
+1
+20 double 1 240
+1
+21 twin 1 300
+1
+7 single 1 140
+5
+-1
+
+afiseaza: 
+
+7 single 1 140
+1 single 0 150
+12 double 2 130
+3 twin 2 230
+20 double 1 240
+21 twin 1 300
+2 triple 0 280
+15 triple 2 320
+
+Explicație: comanda 1 corespunde adăugării unei camere. Comanda 5 corespunde sortării camerelor după
+numărul maxim de persoane și apoi după preț, iar apoi are loc afișarea lor în mod similar cu testul 1. Comanda
+-1 corespunde opririi programului.
+Se sortează după preț toate camerele cu maxim o persoană - camerele de tip “single”.
+Urmează sortarea după preț a tuturor camerelor cu maxim 2 persoane - camerele de tip “double” și “twin”.
+În final, urmează sortarea după preț a tuturor camerelor cu maxim 3 persoane - camerele de tip “triple”.
+
